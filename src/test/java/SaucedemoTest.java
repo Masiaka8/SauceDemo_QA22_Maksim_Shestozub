@@ -20,7 +20,7 @@ public class SaucedemoTest {
     }
 
     @Test
-    public void testAddRemoveElements() throws InterruptedException {
+    public void testAddRemoveElements() {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         driver.manage().window().maximize();
@@ -40,6 +40,5 @@ public class SaucedemoTest {
         Assert.assertEquals(priceItem.getText(), "$29.99");
         WebElement nameItem = driver.findElement(By.className("inventory_item_name"));
         Assert.assertEquals(nameItem.getText(), "Sauce Labs Backpack");
-        Thread.sleep(5000);
     }
 }
