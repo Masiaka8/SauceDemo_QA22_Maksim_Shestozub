@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class LoginPage extends BasePage{
-    private final static By USER_NAME_LOCATOR= By.cssSelector("#user-name");
+    private By USER_NAME_LOCATOR= By.cssSelector("#user-name");
     private By PASSWORD_INPUT_LOCATOR = By.cssSelector("#password");
     private By LOGIN_BUTTON_LOCATOR = By.cssSelector("#login-button");
     private By ERROR_MESSAGE_CONTAINER = By.cssSelector(".error-message-container");

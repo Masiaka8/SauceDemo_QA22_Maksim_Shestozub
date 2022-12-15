@@ -28,6 +28,10 @@ public abstract class BaseTest {
 
         loginPage = new LoginPage(driver);
         productsPage = new ProductsPage(driver);
+        shoppingCartPage = new ShoppingCartPage(driver);
+        productsDetailPage = new ProductDetailsPage(driver);
+        checkoutPage = new CheckoutPage(driver);
+        checkoutOverview = new CheckoutOverview(driver);
     }
 
     @BeforeMethod

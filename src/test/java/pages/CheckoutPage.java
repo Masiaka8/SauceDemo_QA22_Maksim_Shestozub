@@ -8,8 +8,8 @@ public class CheckoutPage extends BasePage{
     private By FIRST_NAME_INPUT_LOCATOR = By.cssSelector("#first-name");
     private By LAST_NAME_INPUT_LOCATOR = By.cssSelector("#last-name");
     private By ZIP_CODE_INPUT_LOCATOR = By.cssSelector("#postal-code");
-    private final static By CANCEL_BUTTON = By.cssSelector("#cancel");
-    private final static By CONTINUE_BUTTON = By.cssSelector("#continue");
+    private By CANCEL_BUTTON = By.cssSelector("#cancel");
+    private By CONTINUE_BUTTON = By.cssSelector("#continue");
 
     public CheckoutPage(WebDriver driver) {
         super(driver);
