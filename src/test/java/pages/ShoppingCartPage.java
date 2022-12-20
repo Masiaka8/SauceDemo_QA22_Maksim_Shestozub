@@ -7,8 +7,8 @@ public class ShoppingCartPage extends BasePage {
 
     private final static By CONTINUE_SHOPPING_BUTTON = By.cssSelector("#continue-shopping");
     private final static By CHECKOUT_BUTTON = By.cssSelector("#checkout");
-    private final static By ITEM_DESCRIPTION = By.cssSelector(".inventory_details_desc.large_size");
-    private final static By ITEM_PRICE = By.cssSelector(".inventory_details_price");
+    private final static By ITEM_DESCRIPTION = By.cssSelector(".inventory_item_desc");
+    private final static By  ITEM_PRICE = By.cssSelector(".inventory_item_price");
 
     public ShoppingCartPage(WebDriver driver) {
         super(driver);
@@ -18,7 +18,7 @@ public class ShoppingCartPage extends BasePage {
         driver.findElement(CONTINUE_SHOPPING_BUTTON).click();
     }
 
-    public void clickCancelButton() {
+    public void clickCheckOutButton() {
         driver.findElement(CHECKOUT_BUTTON).click();
     }
 

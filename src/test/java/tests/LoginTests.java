@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 
 public class LoginTests extends BaseTest{
 
-    @Test
+    @Test(retryAnalyzer = RetryAnalyzer.class, groups = "Smoke", description = "Тест на проверку авторизации")
     public void positiveLoginTest() {
      loginPage.setUsername("standard_user");
      loginPage.setPassword("secret_sauce");

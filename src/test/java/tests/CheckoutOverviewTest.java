@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 
 public class CheckoutOverviewTest extends BaseTest {
 
-    @Test
+    @Test(groups = "Smoke", description = "Тест на проверку оплаты товра")
     public void CheckoutOverwiewTest(){
         String testItemName = "Sauce Labs Backpack";
         String expectedItemPrice = "$29.99";
@@ -15,7 +15,7 @@ public class CheckoutOverviewTest extends BaseTest {
         loginPage.clickLoginButton();
         productsPage.clickAddToCartButton(testItemName);
         productsPage.clickShoppingCartButton();
-        shoppingCartPage.clickContinueShoppingButton();
+        shoppingCartPage.clickCheckOutButton();
         checkoutPage.setFirstName("qweqwe");
         checkoutPage.setLastName("qweqwe");
         checkoutPage.setZipCode("345354");
