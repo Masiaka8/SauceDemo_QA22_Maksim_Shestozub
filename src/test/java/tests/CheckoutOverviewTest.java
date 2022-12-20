@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 
 public class CheckoutOverviewTest extends BaseTest {
 
-    @Test(groups = "Smoke", description = "Тест на проверку оплаты товра")
+    @Test(groups = {"Smoke"}, description = "Тест на проверку оплаты товра")
     public void CheckoutOverwiewTest(){
         String testItemName = "Sauce Labs Backpack";
         String expectedItemPrice = "$29.99";

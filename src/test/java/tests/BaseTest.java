@@ -20,7 +20,7 @@ public abstract class BaseTest {
     protected CheckoutPage checkoutPage;
     protected CheckoutOverview checkoutOverview;
 
-    @BeforeClass
+    @BeforeClass(alwaysRun = true)
     public void setUp() {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
@@ -35,7 +35,7 @@ public abstract class BaseTest {
         checkoutOverview = new CheckoutOverview(driver);
     }
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void  navigate() {
         driver.get("https://www.saucedemo.com/");
     }

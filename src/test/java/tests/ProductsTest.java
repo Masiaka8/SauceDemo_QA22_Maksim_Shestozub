@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 
 public class ProductsTest extends BaseTest {
 
-    @Test(groups = "Regressive", description = "Тест на проверку отображения товаров на главной странице",
+    @Test(groups = {"Regressive"}, description = "Тест на проверку отображения товаров на главной странице",
             dataProvider = "productsTestData")
     public void productsTest(String testItemName, String expectedItemPrice, String expectedItemDescription) {
         loginPage.setUsername("standard_user");
