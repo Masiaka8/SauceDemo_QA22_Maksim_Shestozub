@@ -1,6 +1,7 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 
 public class LoginPage extends BasePage{
@@ -27,5 +28,14 @@ public class LoginPage extends BasePage{
 
     public String getErrorMessageText() {
         return driver.findElement(ERROR_MESSAGE_CONTAINER).getText();
+    }
+
+    public Boolean isLoginButtonPresent() {
+        try {
+            driver.findElement(LOGIN_BUTTON_LOCATOR);
+        } catch (NoSuchElementException ex) {
+            return false;
+        }
+        return true;
     }
 }

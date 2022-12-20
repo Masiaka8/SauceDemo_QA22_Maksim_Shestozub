@@ -11,6 +11,11 @@ public class ProductsPage extends BasePage{
     private final static By ITEM_BUTTON = By.xpath(".//div[@class='inventory_item_name']");
     private final static By ITEM_DESCRIPTION = By.xpath(".//div[@class='inventory_item_desc']");
     private final static By ITEM_PRICE = By.xpath(".//div[@class='inventory_item_price']");
+    private  final static By BURGER_MENU_BUTTON = By.cssSelector("#react-burger-menu-btn");
+    private  final static By LOGOUT_BUTTON = By.cssSelector("#logout_sidebar_link");
+
+    //logout_sidebar_link
+
 
     public ProductsPage(WebDriver driver) {
         super(driver);
@@ -27,6 +32,14 @@ public class ProductsPage extends BasePage{
 
     public void clickShoppingCartButton() {
         driver.findElement(SHOPPING_CART_BUTTON).click();
+    }
+
+    public void clickLogoutButton() {
+        driver.findElement(LOGOUT_BUTTON).click();
+    }
+
+    public void clickBurgerMenuButton() {
+        driver.findElement(BURGER_MENU_BUTTON).click();
     }
 
     public void clickAddToCartButton (String itemName) {
