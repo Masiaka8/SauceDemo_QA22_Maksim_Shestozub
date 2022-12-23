@@ -1,6 +1,7 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 
 public class ShoppingCartPage extends BasePage {
@@ -28,5 +29,13 @@ public class ShoppingCartPage extends BasePage {
 
     public String getItemDescription(String itemName) {
         return driver.findElement(ITEM_DESCRIPTION).getText();
+    }
+    public Boolean isCheckoutButtonPresent() {
+        try {
+            driver.findElement(CHECKOUT_BUTTON);
+        } catch (NoSuchElementException ex) {
+            return false;
+        }
+        return true;
     }
 }

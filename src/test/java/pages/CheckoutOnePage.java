@@ -3,15 +3,16 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class CheckoutPage extends BasePage{
+public class CheckoutOnePage extends BasePage{
 
     private By FIRST_NAME_INPUT_LOCATOR = By.cssSelector("#first-name");
     private By LAST_NAME_INPUT_LOCATOR = By.cssSelector("#last-name");
     private By ZIP_CODE_INPUT_LOCATOR = By.cssSelector("#postal-code");
     private By CANCEL_BUTTON = By.cssSelector("#cancel");
     private By CONTINUE_BUTTON = By.cssSelector("#continue");
+    private By ERROR_MESSAGE =By.cssSelector(".error-message-container");
 
-    public CheckoutPage(WebDriver driver) {
+    public CheckoutOnePage(WebDriver driver) {
         super(driver);
     }
 
@@ -31,6 +32,9 @@ public class CheckoutPage extends BasePage{
 
     public void clickContinueOverwiewButton() {
         driver.findElement(CONTINUE_BUTTON).click();
+    }
+    public String getErrorMessageText() {
+        return driver.findElement(ERROR_MESSAGE).getText();
     }
 
 }

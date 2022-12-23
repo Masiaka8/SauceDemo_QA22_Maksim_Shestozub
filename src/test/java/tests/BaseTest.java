@@ -3,10 +3,8 @@ package tests;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Listeners;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.testng.annotations.*;
 import pages.*;
 import java.util.concurrent.TimeUnit;
 
@@ -17,13 +15,22 @@ public abstract class BaseTest {
     protected ProductsPage productsPage;
     protected ShoppingCartPage shoppingCartPage;
     protected ProductDetailsPage productsDetailPage;
-    protected CheckoutPage checkoutPage;
-    protected CheckoutOverview checkoutOverview;
+    protected CheckoutOnePage checkoutOnePage;
+    protected CheckoutTwoPage checkoutTwoPage;
 
+    @Parameters ({"browser"})
     @BeforeClass(alwaysRun = true)
-    public void setUp() {
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
+    public void setUp(@Optional("chrome") String browserName) throws Exception {
+        if(browserName.equals("chrome")) {
+            WebDriverManager.chromedriver().setup();
+            driver = new ChromeDriver();
+        } else if(browserName.equals("edge")) {
+            WebDriverManager.edgedriver().setup();
+            driver = new EdgeDriver();
+        } else {
+            throw new Exception("Incorrect browser name");
+        }
+
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
@@ -31,8 +38,8 @@ public abstract class BaseTest {
         productsPage = new ProductsPage(driver);
         shoppingCartPage = new ShoppingCartPage(driver);
         productsDetailPage = new ProductDetailsPage(driver);
-        checkoutPage = new CheckoutPage(driver);
-        checkoutOverview = new CheckoutOverview(driver);
+        checkoutOnePage = new CheckoutOnePage(driver);
+        checkoutTwoPage = new CheckoutTwoPage(driver);
     }
 
     @BeforeMethod(alwaysRun = true)
