@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 public class CheckoutTest extends BaseTest {
 
     @Test(groups = {"Smoke"}, description = "Тест на проверку оплаты товра")
-    public void CheckoutOverwiewTest(){
+    public void сheckoutOverwiewTest(){
         String testItemName = "Sauce Labs Backpack";
         loginPage.setUsername("standard_user");
         loginPage.setPassword("secret_sauce");
