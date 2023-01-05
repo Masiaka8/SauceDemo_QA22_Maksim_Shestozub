@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -21,6 +22,7 @@ public class CheckoutTwoPage extends BasePage{
         driver.findElement(CANCEL_BUTTON).click();
     }
 
+    @Step
     public Boolean isFinishButtonPresent() {
         try {
             driver.findElement(FINISH_BUTTON);

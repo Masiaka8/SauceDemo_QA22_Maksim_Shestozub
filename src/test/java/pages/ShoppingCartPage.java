@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -19,17 +20,22 @@ public class ShoppingCartPage extends BasePage {
         driver.findElement(CONTINUE_SHOPPING_BUTTON).click();
     }
 
+    @Step
     public void clickCheckOutButton() {
         driver.findElement(CHECKOUT_BUTTON).click();
     }
 
+    @Step
     public String getItemPrice(String itemName) {
         return driver.findElement(ITEM_PRICE).getText();
     }
 
+    @Step
     public String getItemDescription(String itemName) {
         return driver.findElement(ITEM_DESCRIPTION).getText();
     }
+
+    @Step
     public Boolean isCheckoutButtonPresent() {
         try {
             driver.findElement(CHECKOUT_BUTTON);

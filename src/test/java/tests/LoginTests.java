@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 
 public class LoginTests extends BaseTest{
 
-    @Test(retryAnalyzer = RetryAnalyzer.class, groups = {"Smoke"}, description = "Тест на проверку авторизации")
+    @Test(retryAnalyzer = RetryAnalyzer.class, groups = {"Smoke"}, description = "Authorization test")
     public void positiveLoginTest() {
      loginPage.setUsername("standard_user");
      loginPage.setPassword("secret_sauce");
@@ -14,7 +14,7 @@ public class LoginTests extends BaseTest{
      Assert.assertTrue(productsPage.isShoppingCartButtonPresent());
     }
 
-    @Test(dataProvider = "negativeLoginTestData", groups = {"Negative"}, description = "Негативный тест на проверку авторизации")
+    @Test(dataProvider = "negativeLoginTestData", groups = {"Negative"}, description = "Negative authorization test")
     public void negativeLoginTest(String username, String password, String errorMessage) {
         loginPage.setUsername(username);
         loginPage.setPassword(password);
