@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 
 public class CheckoutTest extends BaseTest {
 
-    @Test(groups = {"Smoke"}, description = "Тест на проверку оплаты товра")
+    @Test(groups = {"Smoke"}, description = "Test to payment verification")
     public void сheckoutOverwiewTest(){
         String testItemName = "Sauce Labs Backpack";
         loginPage.setUsername("standard_user");
@@ -22,7 +22,7 @@ public class CheckoutTest extends BaseTest {
         Assert.assertTrue(checkoutTwoPage.isFinishButtonPresent());
     }
 
-    @Test(groups = {"Negative"}, description = "Негативный тест на проверку личной информации оплаты")
+    @Test(groups = {"Negative"}, description = "Negative test to verify personal payment information")
     public void negativeCheckoutYourInformationTest() {
         String testItemName = "Sauce Labs Backpack";
         String erorrMessage = "Error: Postal Code is required";
@@ -40,7 +40,7 @@ public class CheckoutTest extends BaseTest {
         Assert.assertEquals(checkoutOnePage.getErrorMessageText(), erorrMessage);
     }
 
-    @Test(groups = {"Negative"}, description = "Негативный тест на проверку покупки без товара")
+    @Test(groups = {"Negative"}, description = "Negative test to verify a purchase without a product")
     public void negativeCheckoutOverwiewTest(){
         loginPage.setUsername("standard_user");
         loginPage.setPassword("secret_sauce");

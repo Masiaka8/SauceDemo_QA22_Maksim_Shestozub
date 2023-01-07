@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -13,6 +14,7 @@ public class ProductDetailsPage extends BasePage{
         super(driver);
     }
 
+    @Step
     public String getItemPrice(String itemName) {
         return driver.findElement(ITEM_PRICE).getText();
     }
@@ -21,6 +23,7 @@ public class ProductDetailsPage extends BasePage{
         return driver.findElement(ITEM_NAME).getText();
     }
 
+    @Step
     public String getItemDescription(String itemName) {
         return driver.findElement(ITEM_DESCRIPTION).getText();
     }

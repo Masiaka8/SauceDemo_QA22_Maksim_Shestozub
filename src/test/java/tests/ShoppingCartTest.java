@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 
 public class ShoppingCartTest extends BaseTest{
 
-    @Test(groups = {"Smoke"}, description = "Тест на проверку добавленного товара в корзину")
+    @Test(groups = {"Smoke"}, description = "Test for checking the item added to the cart")
     public void shoppingCartTest() {
         String testItemName = "Sauce Labs Backpack";
         String expectedItemPrice = "$29.99";
