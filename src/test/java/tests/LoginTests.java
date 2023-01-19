@@ -11,7 +11,7 @@ public class LoginTests extends BaseTest{
      loginPage.setUsername("standard_user");
      loginPage.setPassword("secret_sauce");
      loginPage.clickLoginButton();
-     Assert.assertTrue(productsPage.isShoppingCartButtonPresent());
+     Assert.assertTrue(productsPage.isPageOpened());
     }
 
     @Test(dataProvider = "negativeLoginTestData", groups = {"Negative"}, description = "Negative authorization test")

@@ -1,44 +1,60 @@
 package pages;
 
 import io.qameta.allure.Step;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
 
 public class CheckoutOnePage extends BasePage{
-
-    private By FIRST_NAME_INPUT_LOCATOR = By.cssSelector("#first-name");
-    private By LAST_NAME_INPUT_LOCATOR = By.cssSelector("#last-name");
-    private By ZIP_CODE_INPUT_LOCATOR = By.cssSelector("#postal-code");
-    private By CANCEL_BUTTON = By.cssSelector("#cancel");
-    private By CONTINUE_BUTTON = By.cssSelector("#continue");
-    private By ERROR_MESSAGE =By.cssSelector(".error-message-container");
+    @FindBy(css = "#first-name")
+    private WebElement FIRST_NAME_INPUT_LOCATOR;
+    @FindBy(css = "#last-name")
+    private WebElement LAST_NAME_INPUT_LOCATOR;
+    @FindBy(css = "#postal-code")
+    private WebElement ZIP_CODE_INPUT_LOCATOR;
+    @FindBy(css = "#continue")
+    private WebElement CONTINUE_BUTTON;
+    @FindBy(css = ".error-message-container")
+    private WebElement ERROR_MESSAGE;
 
     public CheckoutOnePage(WebDriver driver) {
         super(driver);
+        PageFactory.initElements(driver, this);
     }
 
-    public void clickCancelButton() {
-        driver.findElement(CANCEL_BUTTON).click();
+    @Step
+    public CheckoutOnePage setFirstName(String firstName) {
+        logger.debug("Input firstName %s", firstName );
+        FIRST_NAME_INPUT_LOCATOR.sendKeys(firstName);
+        return this;
     }
     @Step
-    public void setFirstName(String firstName) {
-        driver.findElement(FIRST_NAME_INPUT_LOCATOR).sendKeys(firstName);
+    public CheckoutOnePage setLastName(String lastName) {
+        logger.debug("Input lastName %s", lastName );
+        LAST_NAME_INPUT_LOCATOR.sendKeys(lastName);
+        return this;
     }
     @Step
-    public void setLastName(String lastName) {
-        driver.findElement(LAST_NAME_INPUT_LOCATOR).sendKeys(lastName);
+    public CheckoutOnePage setZipCode(String zipCode) {
+        logger.debug("Input ZipCode %s", zipCode );
+        ZIP_CODE_INPUT_LOCATOR.sendKeys(zipCode);
+        return this;
     }
     @Step
-    public void setZipCode(String zipCode) {
-        driver.findElement(ZIP_CODE_INPUT_LOCATOR).sendKeys(zipCode);
-    }
-    @Step
-    public void clickContinueOverwiewButton() {
-        driver.findElement(CONTINUE_BUTTON).click();
+    public CheckoutTwoPage clickContinueOverwiewButton() {
+        logger.info("Clicking continue button");
+        CONTINUE_BUTTON.click();
+        return new CheckoutTwoPage(driver);
     }
     @Step
     public String getErrorMessageText() {
-        return driver.findElement(ERROR_MESSAGE).getText();
+        return ERROR_MESSAGE.getText();
     }
-
+    @Override
+    public boolean isPageOpened(){
+        logger.info("Button is displayed");
+        return CONTINUE_BUTTON.isDisplayed();
+    }
 }

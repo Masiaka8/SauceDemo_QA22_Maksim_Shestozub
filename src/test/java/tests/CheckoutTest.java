@@ -13,13 +13,14 @@ public class CheckoutTest extends BaseTest {
         loginPage.clickLoginButton();
         productsPage.clickAddToCartButton(testItemName);
         productsPage.clickShoppingCartButton();
+
         shoppingCartPage.clickCheckOutButton();
         checkoutOnePage.setFirstName("qweqwe");
         checkoutOnePage.setLastName("qweqwe");
         checkoutOnePage.setZipCode("345354");
         checkoutOnePage.clickContinueOverwiewButton();
 
-        Assert.assertTrue(checkoutTwoPage.isFinishButtonPresent());
+        Assert.assertTrue(checkoutTwoPage.isPageOpened());
     }
 
     @Test(groups = {"Negative"}, description = "Negative test to verify personal payment information")
@@ -48,6 +49,6 @@ public class CheckoutTest extends BaseTest {
         productsPage.clickShoppingCartButton();
         shoppingCartPage.clickCheckOutButton();
 
-        Assert.assertTrue(shoppingCartPage.isCheckoutButtonPresent());
+        Assert.assertTrue(shoppingCartPage.isPageOpened());
     }
 }

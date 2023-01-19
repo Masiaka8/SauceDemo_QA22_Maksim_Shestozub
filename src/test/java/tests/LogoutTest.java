@@ -14,6 +14,6 @@ public class LogoutTest extends BaseTest {
         loginPage.clickLoginButton();
         productsPage.clickBurgerMenuButton();
         productsPage.clickLogoutButton();
-        Assert.assertTrue(loginPage.isLoginButtonPresent());
+        Assert.assertTrue(loginPage.isPageOpened());
     }
 }
