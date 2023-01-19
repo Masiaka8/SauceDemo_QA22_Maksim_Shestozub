@@ -1,47 +1,54 @@
 package pages;
 
 import io.qameta.allure.Step;
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 public class ShoppingCartPage extends BasePage {
-
-    private final static By CONTINUE_SHOPPING_BUTTON = By.cssSelector("#continue-shopping");
-    private final static By CHECKOUT_BUTTON = By.cssSelector("#checkout");
-    private final static By ITEM_DESCRIPTION = By.cssSelector(".inventory_item_desc");
-    private final static By  ITEM_PRICE = By.cssSelector(".inventory_item_price");
+    @FindBy(css = "#continue-shopping")
+    private WebElement CONTINUE_SHOPPING_BUTTON;
+    @FindBy(css = "#checkout")
+    private WebElement CHECKOUT_BUTTON;
+    @FindBy(css = ".inventory_item_desc")
+    private WebElement ITEM_DESCRIPTION;
+    @FindBy(css = ".inventory_item_price")
+    private WebElement ITEM_PRICE;
 
     public ShoppingCartPage(WebDriver driver) {
         super(driver);
+        PageFactory.initElements(driver, this);
     }
 
-    public void clickContinueShoppingButton() {
-        driver.findElement(CONTINUE_SHOPPING_BUTTON).click();
+    public ProductsPage clickContinueShoppingButton() {
+        logger.info("Clicking continue button");
+        CONTINUE_SHOPPING_BUTTON.click();
+        return new ProductsPage(driver);
     }
 
     @Step
-    public void clickCheckOutButton() {
-        driver.findElement(CHECKOUT_BUTTON).click();
+    public CheckoutOnePage clickCheckOutButton() {
+        logger.info("Clicking checkout button");
+        CHECKOUT_BUTTON.click();
+        return new CheckoutOnePage(driver);
     }
 
     @Step
     public String getItemPrice(String itemName) {
-        return driver.findElement(ITEM_PRICE).getText();
+        logger.debug("Get price {}", itemName );
+        return ITEM_PRICE.getText();
     }
 
     @Step
     public String getItemDescription(String itemName) {
-        return driver.findElement(ITEM_DESCRIPTION).getText();
+        logger.debug("Get description {}", itemName );
+        return ITEM_DESCRIPTION.getText();
     }
 
-    @Step
-    public Boolean isCheckoutButtonPresent() {
-        try {
-            driver.findElement(CHECKOUT_BUTTON);
-        } catch (NoSuchElementException ex) {
-            return false;
-        }
-        return true;
+    @Override
+    public boolean isPageOpened(){
+        logger.info("Button is displayed");
+        return CHECKOUT_BUTTON.isDisplayed();
     }
 }

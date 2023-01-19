@@ -1,47 +1,56 @@
 package pages;
 
 import io.qameta.allure.Step;
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 public class LoginPage extends BasePage{
-    private By USER_NAME_LOCATOR= By.cssSelector("#user-name");
-    private By PASSWORD_INPUT_LOCATOR = By.cssSelector("#password");
-    private By LOGIN_BUTTON_LOCATOR = By.cssSelector("#login-button");
-    private By ERROR_MESSAGE_CONTAINER = By.cssSelector(".error-message-container");
+    @FindBy(css = "#user-name")
+    private WebElement USER_NAME_LOCATOR;
+    @FindBy(css = "#password")
+    private WebElement PASSWORD_INPUT_LOCATOR;
+    @FindBy(css = "#login-button")
+    private WebElement LOGIN_BUTTON_LOCATOR;
+    @FindBy(css = ".error-message-container")
+    private WebElement ERROR_MESSAGE_CONTAINER;
 
     public LoginPage(WebDriver driver) {
         super(driver);
+        PageFactory.initElements(driver, this);
     }
 
     @Step
-    public void clickLoginButton() {
-        driver.findElement(LOGIN_BUTTON_LOCATOR).click();
+    public ProductsPage clickLoginButton() {
+        logger.info("Clicking login button");
+        LOGIN_BUTTON_LOCATOR.click();
+        return new ProductsPage(driver);
     }
 
     @Step
-    public void setUsername(String username) {
-        driver.findElement(USER_NAME_LOCATOR).sendKeys(username);
+    public LoginPage setUsername(String username) {
+        logger.debug("Input Username {}", username );
+        USER_NAME_LOCATOR.sendKeys(username);
+        return this;
     }
 
     @Step
-    public void setPassword(String password) {
-        driver.findElement(PASSWORD_INPUT_LOCATOR).sendKeys(password);
+    public LoginPage setPassword(String password) {
+        logger.debug("Input Password {}", password );
+        PASSWORD_INPUT_LOCATOR.sendKeys(password);
+        return this;
     }
 
     @Step
     public String getErrorMessageText() {
-        return driver.findElement(ERROR_MESSAGE_CONTAINER).getText();
+        logger.debug("Error message {}", getErrorMessageText());
+        return ERROR_MESSAGE_CONTAINER.getText();
     }
 
-    @Step
-    public Boolean isLoginButtonPresent() {
-        try {
-            driver.findElement(LOGIN_BUTTON_LOCATOR);
-        } catch (NoSuchElementException ex) {
-            return false;
-        }
-        return true;
+    @Override
+    public boolean isPageOpened(){
+        logger.info("Button is displayed");
+        return LOGIN_BUTTON_LOCATOR.isDisplayed();
     }
 }
