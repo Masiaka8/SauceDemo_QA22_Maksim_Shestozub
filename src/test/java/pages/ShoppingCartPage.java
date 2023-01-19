@@ -36,13 +36,13 @@ public class ShoppingCartPage extends BasePage {
 
     @Step
     public String getItemPrice(String itemName) {
-        logger.debug("Get price %s", itemName );
+        logger.debug("Get price {}", itemName );
         return ITEM_PRICE.getText();
     }
 
     @Step
     public String getItemDescription(String itemName) {
-        logger.debug("Get description %s", itemName );
+        logger.debug("Get description {}", itemName );
         return ITEM_DESCRIPTION.getText();
     }
 

@@ -56,37 +56,37 @@ public class ProductsPage extends BasePage{
 
     @Step
     public void clickAddToCartButton (String itemName) {
-        logger.debug("Clicking add item button %s", itemName );
+        logger.debug("Clicking add item button {}", itemName );
         driver.findElement(getItemContainerByName(itemName)).findElement(ADD_TO_CART_BUTTON).click();
     }
 
     @Step
     public String getItemDescrtption (String itemName) {
-        logger.debug("Get text from description %s", itemName );
+        logger.debug("Get text from description {}", itemName );
         return driver.findElement(getItemContainerByName(itemName)).findElement(ITEM_DESCRIPTION).getText();
     }
 
     @Step
     public String getItemPrice (String itemName) {
-        logger.debug("Get text from price %s", itemName );
+        logger.debug("Get text from price {}", itemName );
         return driver.findElement(getItemContainerByName(itemName)).findElement(ITEM_PRICE).getText();
     }
 
     @Step
     public void openItem (String itemName) {
-        logger.debug("Clicking item page button %s", itemName );
+        logger.debug("Clicking item page button {}", itemName );
         driver.findElement(getItemContainerByName(itemName)).findElement(ITEM_BUTTON).click();
     }
 
     @Step
     private By getItemContainerByName (String itemName) {
-        logger.debug("Find item %s", itemName );
+        logger.debug("Find item {}", itemName );
         return By.xpath(String.format(ITEM_CONTAINER_LOCATOR, itemName));
     }
 
     @Step
     public ProductsPage selectSortingOrderOption (String optionName) {
-        logger.debug("Selecting %s", optionName );
+        logger.debug("Selecting {}", optionName );
         Select select = new Select(driver.findElement(By.cssSelector(".product_sort_container")));
         select.selectByVisibleText(optionName);
         return this;

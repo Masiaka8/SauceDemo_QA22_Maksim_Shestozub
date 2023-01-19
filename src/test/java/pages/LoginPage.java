@@ -30,20 +30,21 @@ public class LoginPage extends BasePage{
 
     @Step
     public LoginPage setUsername(String username) {
-        logger.debug("Input Username %s", username );
+        logger.debug("Input Username {}", username );
         USER_NAME_LOCATOR.sendKeys(username);
         return this;
     }
 
     @Step
     public LoginPage setPassword(String password) {
-        logger.debug("Input Password %s", password );
+        logger.debug("Input Password {}", password );
         PASSWORD_INPUT_LOCATOR.sendKeys(password);
         return this;
     }
 
     @Step
     public String getErrorMessageText() {
+        logger.debug("Error message {}", getErrorMessageText());
         return ERROR_MESSAGE_CONTAINER.getText();
     }
 

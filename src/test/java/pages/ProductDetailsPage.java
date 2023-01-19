@@ -24,18 +24,18 @@ public class ProductDetailsPage extends BasePage{
 
     @Step
     public String getItemPrice(String itemName) {
-        logger.debug("Get description %s", itemName );
+        logger.debug("Get description {}", itemName );
         return ITEM_PRICE.getText();
     }
 
     public String getItemName(String itemName) {
-        logger.debug("Get text from item name %s", itemName );
+        logger.debug("Get text from item name {}", itemName );
         return ITEM_NAME.getText();
     }
 
     @Step
     public String getItemDescription(String itemName) {
-        logger.debug("Get text from description %s", itemName );
+        logger.debug("Get text from description {}", itemName );
         return ITEM_DESCRIPTION.getText();
     }
 

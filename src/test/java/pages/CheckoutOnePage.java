@@ -26,19 +26,19 @@ public class CheckoutOnePage extends BasePage{
 
     @Step
     public CheckoutOnePage setFirstName(String firstName) {
-        logger.debug("Input firstName %s", firstName );
+        logger.debug("Input firstName {}", firstName );
         FIRST_NAME_INPUT_LOCATOR.sendKeys(firstName);
         return this;
     }
     @Step
     public CheckoutOnePage setLastName(String lastName) {
-        logger.debug("Input lastName %s", lastName );
+        logger.debug("Input lastName {}", lastName );
         LAST_NAME_INPUT_LOCATOR.sendKeys(lastName);
         return this;
     }
     @Step
     public CheckoutOnePage setZipCode(String zipCode) {
-        logger.debug("Input ZipCode %s", zipCode );
+        logger.debug("Input ZipCode {}", zipCode );
         ZIP_CODE_INPUT_LOCATOR.sendKeys(zipCode);
         return this;
     }
@@ -50,6 +50,7 @@ public class CheckoutOnePage extends BasePage{
     }
     @Step
     public String getErrorMessageText() {
+        logger.debug("Error message {}", getErrorMessageText());
         return ERROR_MESSAGE.getText();
     }
     @Override
