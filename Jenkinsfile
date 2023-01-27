@@ -1,6 +1,12 @@
 pipeline {
     agent any
 
+    triggers {
+            parameterizedCron('''
+                0 21 * * * %SUITE_NAME=smokeTest.xml;
+                30 21 * * * %SUITE_NAME=regressiveTest
+            ''')
+
     tools {
         // Install the Maven version configured as "M3" and add it to the path.
         maven "M3"
@@ -9,7 +15,7 @@ pipeline {
     parameters {
      gitParameter branchFilter: 'origin/(.*)', defaultValue: 'master', name: 'BRANCH', type: 'PT_BRANCH'
      string(name: 'SUITE_NAME', defaultValue: 'smokeTest.xml')
-     choice(choices: ['Chrome', 'Edge'], description: 'Select a browser', name: 'BROWSER')
+     choice(choices: ['Chrome', 'Edge'], description: 'Select a browser', name: 'BROWSER',)
      booleanParam (
                    defaultValue: false,
                    description: 'Headless',
