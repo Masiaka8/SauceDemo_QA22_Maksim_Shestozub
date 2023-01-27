@@ -18,6 +18,20 @@ pipeline {
                 // To run Maven on a Windows agent, use
                 // bat "mvn -Dmaven.test.failure.ignore=true clean package"
             }
+            
+        stage('Generate Allure report') {
+            steps {
+                 script {
+                    allure([
+                     includeProperties: false,
+                     jdk: '',
+                     properties: [],
+                     reportBuildPolicy: 'ALWAYS',
+                     results: [[path: 'target/allure-results']]
+                     ])
+                }
+            }
+        }
 
             post {
                 // If Maven was able to run the tests, even if some of the test
