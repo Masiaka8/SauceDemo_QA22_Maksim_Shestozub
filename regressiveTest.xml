@@ -2,7 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Regressive Tests" parallel="tests" thread-count="2">
     <test name="Regressive Tests on chrome">
-        <parameter name="browser" value="chrome"></parameter>
+        <parameter name="browser" value="Chrome"></parameter>
         <groups>
             <run>
                 <include name="Regressive"/>
@@ -13,7 +13,7 @@
         </packages>
     </test>
     <test name="Regressive Tests on edge">
-        <parameter name="browser" value="edge"></parameter>
+        <parameter name="browser" value="Edge"></parameter>
         <groups>
             <run>
                 <include name="Regressive"/>
