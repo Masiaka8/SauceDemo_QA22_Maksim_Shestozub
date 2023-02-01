@@ -6,7 +6,7 @@ pipeline {
                 45 19 * * * %SUITE_NAME=smokeTest.xml;
                 50 19 * * * %SUITE_NAME=regressiveTest.xml
             ''')
-
+    }
     tools {
         // Install the Maven version configured as "M3" and add it to the path.
         maven "M3"
