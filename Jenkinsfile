@@ -1,11 +1,12 @@
 pipeline {
     agent any
 
-    //triggers {
-    //        parameterizedCron('''
-    //            0 21 * * * %SUITE_NAME=smokeTest.xml;
-    //            30 21 * * * %SUITE_NAME=regressiveTest
-    //        ''')
+    triggers {
+            parameterizedCron('''
+                50 20 * * * %SUITE_NAME=smokeTest.xml
+                55 20 * * * %SUITE_NAME=regressiveTest.xml
+            ''')
+    }
 
     tools {
         // Install the Maven version configured as "M3" and add it to the path.
@@ -29,8 +30,7 @@ pipeline {
                 git branch: "${params.BRANCH}", url: 'https://github.com/Masiaka8/SauceDemo_QA22_Maksim_Shestozub'
 
                 // Run Maven on a Unix agent.
-                bat "mvn -Dmaven.test.failure.ignore=true -DsuiteXmlFile=${params.SUITE_NAME}
-                -Dbrowser=${params.BROWSER} -Dheadless=${params.HEADLESS} clean test"
+                bat "mvn -Dmaven.test.failure.ignore=true -DsuiteXmlFile=${params.SUITE_NAME} -Dbrowser=${params.BROWSER} -Dheadless=${params.HEADLESS} clean test"
 
                 // To run Maven on a Windows agent, use
                 // bat "mvn -Dmaven.test.failure.ignore=true clean package"
