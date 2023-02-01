@@ -1,12 +1,6 @@
 pipeline {
     agent any
 
-    triggers {
-            parameterizedCron('''
-                45 19 * * * %SUITE_NAME=smokeTest.xml
-                50 19 * * * %SUITE_NAME=regressiveTest.xml
-            ''')
-    }
     tools {
         // Install the Maven version configured as "M3" and add it to the path.
         maven "M3"
@@ -20,6 +14,20 @@ pipeline {
                    defaultValue: false,
                    description: 'Headless',
                    name: 'HEADLESS')
+    }
+    triggers {
+            parameterizedCron('''
+                45 19 * * * %SUITE_NAME=smokeTest.xml
+                50 19 * * * %SUITE_NAME=regressiveTest.xml
+            ''')
+    }
+    stages {
+        stage('Example') {
+            steps {
+                echo "${params.SUITE_NAME}"
+                script { currentBuild.description = "${params.SUITE_NAME}" }
+            }
+        }
     }
 
     stages {
