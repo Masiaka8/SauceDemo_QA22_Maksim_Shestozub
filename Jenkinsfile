@@ -1,11 +1,11 @@
 pipeline {
     agent any
 
-    //triggers {
-            //parameterizedCron('''
-            //    0 21 * * * %SUITE_NAME=smokeTest.xml;
-            //    30 21 * * * %SUITE_NAME=regressiveTest
-            //''')
+    triggers {
+            parameterizedCron('''
+                0 21 * * * %SUITE_NAME=smokeTest.xml;
+                30 21 * * * %SUITE_NAME=regressiveTest.xml
+            ''')
 
     tools {
         // Install the Maven version configured as "M3" and add it to the path.
