@@ -1,6 +1,13 @@
 pipeline {
     agent any
 
+    triggers {
+            parameterizedCron('''
+                0 21 * * * %SUITE_NAME=smokeTest.xml
+                30 21 * * * %SUITE_NAME=regressiveTest.xml
+            ''')
+    }
+
     tools {
         // Install the Maven version configured as "M3" and add it to the path.
         maven "M3"
@@ -15,20 +22,6 @@ pipeline {
                    description: 'Headless',
                    name: 'HEADLESS')
     }
-    triggers {
-            parameterizedCron('''
-                45 19 * * * %SUITE_NAME=smokeTest.xml
-                50 19 * * * %SUITE_NAME=regressiveTest.xml
-            ''')
-    }
-    stages {
-        stage('Example') {
-            steps {
-                echo "${params.SUITE_NAME}"
-                script { currentBuild.description = "${params.SUITE_NAME}" }
-            }
-        }
-    }
 
     stages {
         stage('Run Selenium Tests') {
@@ -37,7 +30,8 @@ pipeline {
                 git branch: "${params.BRANCH}", url: 'https://github.com/Masiaka8/SauceDemo_QA22_Maksim_Shestozub'
 
                 // Run Maven on a Unix agent.
-                bat "mvn -Dmaven.test.failure.ignore=true -DsuiteXmlFile=${params.SUITE_NAME} clean test"
+                bat "mvn -Dmaven.test.failure.ignore=true -DsuiteXmlFile=${params.SUITE_NAME}
+                -Dbrowser=${params.BROWSER} -Dheadless=${params.HEADLESS} clean test"
 
                 // To run Maven on a Windows agent, use
                 // bat "mvn -Dmaven.test.failure.ignore=true clean package"
