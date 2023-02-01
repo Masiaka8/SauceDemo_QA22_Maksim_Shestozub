@@ -30,7 +30,7 @@ pipeline {
                 git branch: "${params.BRANCH}", url: 'https://github.com/Masiaka8/SauceDemo_QA22_Maksim_Shestozub'
 
                 // Run Maven on a Unix agent.
-                bat "mvn -Dmaven.test.failure.ignore=true -DsuiteXmlFiles=${params.SUITE_NAME} -Dbrowser=${params.BROWSER} -Dheadless=${params.HEADLESS} clean test"
+                bat "mvn -Dmaven.test.failure.ignore=true -DsuiteXmlFile=${params.SUITE_NAME} -Dbrowser=${params.BROWSER} -Dheadless=${params.HEADLESS} clean test"
 
                 // To run Maven on a Windows agent, use
                 // bat "mvn -Dmaven.test.failure.ignore=true clean package"
