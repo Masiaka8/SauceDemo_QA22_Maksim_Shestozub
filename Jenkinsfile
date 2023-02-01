@@ -3,7 +3,7 @@ pipeline {
 
     triggers {
             parameterizedCron('''
-                45 19 * * * %SUITE_NAME=smokeTest.xml;
+                45 19 * * * %SUITE_NAME=smokeTest.xml
                 50 19 * * * %SUITE_NAME=regressiveTest.xml
             ''')
     }
