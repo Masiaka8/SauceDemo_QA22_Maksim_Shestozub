@@ -3,6 +3,7 @@ package tests;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.testng.ITestContext;
 import org.testng.annotations.*;
@@ -19,13 +20,17 @@ public abstract class BaseTest {
     protected CheckoutOnePage checkoutOnePage;
     protected CheckoutTwoPage checkoutTwoPage;
 
-    @Parameters ({"browser"})
     @BeforeClass(alwaysRun = true)
-    public void setUp(@Optional("chrome") String browserName, ITestContext testContext) throws Exception {
-        if(browserName.equals("chrome")) {
+    public void setUp(ITestContext testContext) throws Exception {
+        String browserName = System.getProperty("browser", "Chrome");
+        String headless = System.getProperty("headless", "false");
+        if(browserName.equals("Chrome")) {
+            ChromeOptions options = new ChromeOptions();
+            if(headless.equals("true")) {
+                options.addArguments("--headless");}
             WebDriverManager.chromedriver().setup();
-            driver = new ChromeDriver();
-        } else if(browserName.equals("edge")) {
+            driver = new ChromeDriver(options);
+        } else if(browserName.equals("Edge")) {
             WebDriverManager.edgedriver().setup();
             driver = new EdgeDriver();
         } else {
